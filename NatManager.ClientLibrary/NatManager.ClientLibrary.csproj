@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.Streams" Version="2.8.54" />
+    <PackageReference Include="SimpleSockets" Version="1.2.20" />
+    <PackageReference Include="StreamJsonRpc" Version="2.9.85" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NatManager.Shared\NatManager.Shared.csproj" />
+    <ProjectReference Include="..\SimpleSocketsJsonRpc\SimpleSocketsJsonRpc.csproj" />
+  </ItemGroup>
+
+</Project>
