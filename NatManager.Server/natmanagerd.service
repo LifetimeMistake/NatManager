@@ -1,0 +1,12 @@
+﻿[Unit]
+Description=Daemon used to dynamically manage port mappings over the UPNP protocol
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/natmanagerd -f "/etc/natmanagerd.conf"
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -36,7 +36,7 @@ namespace NatManager.Server.Configuration
             configEntries.Clear();
             foreach(string line in pairs.Split(Environment.NewLine))
             {
-                string[] parts = line.Split(" ");
+                string[] parts = line.Split("=");
                 string key = parts[0];
 
                 if (key == "")
@@ -45,7 +45,7 @@ namespace NatManager.Server.Configuration
                 if (configEntries.ContainsKey(key))
                     continue;
 
-                string value = string.Join(" ", parts.Skip(1));
+                string value = string.Join("=", parts.Skip(1));
                 configEntries.Add(key, value);
             }
         }
@@ -54,7 +54,7 @@ namespace NatManager.Server.Configuration
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach(KeyValuePair<string, string> kvp in configEntries)
-                stringBuilder.Append(string.Join(" ", kvp.Key, kvp.Value));
+                stringBuilder.Append(string.Join("=", kvp.Key, kvp.Value));
 
             File.WriteAllText(path, stringBuilder.ToString());
         }
