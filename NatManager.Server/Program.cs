@@ -34,7 +34,7 @@ namespace NatManager.Server
 
             if (!File.Exists(serverLaunchOptions.ConfigPath))
             {
-                Console.WriteLine($"Configuration file not found at \"{serverLaunchOptions.ConfigPath}\".");
+                Console.WriteLine($"Configuration file not found at \"{Path.GetFullPath(serverLaunchOptions.ConfigPath)}\".");
                 return;
             }
 
