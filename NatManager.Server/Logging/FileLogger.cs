@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace NatManager.Server.Logging
 {
-    public class SimpleLogger : ILogger, IErrorHandler
+    public class FileLogger : ILogger, IErrorHandler
     {
         private string outputPath;
         private SemaphoreSlim fileLock = new SemaphoreSlim(1, 1);
-        public SimpleLogger(string outputDir)
+        public FileLogger(string outputDir)
         {
             if (!Directory.Exists(outputDir))
                 Directory.CreateDirectory(outputDir);

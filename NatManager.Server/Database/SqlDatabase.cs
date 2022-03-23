@@ -24,7 +24,14 @@ namespace NatManager.Server.Database
                 if (sqlConnection == null)
                     return DatabaseState.Disconnected;
 
-                return (sqlConnection.State == System.Data.ConnectionState.Open ? DatabaseState.Connected : DatabaseState.Disconnected);
+                try
+                {
+                    return sqlConnection.Ping() ? DatabaseState.Connected : DatabaseState.Disconnected;
+                }
+                catch
+                { 
+                    return DatabaseState.Disconnected;
+                }
             }
         }
 

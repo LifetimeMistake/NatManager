@@ -69,7 +69,12 @@ namespace NatManager.Server
             SqlDatabase sqlDatabase = new SqlDatabase(databaseCredentials);
             while(sqlDatabase.State != DatabaseState.Connected)
             {
-                if(!await sqlDatabase.StartAsync())
+                try
+                {
+                    if (!await sqlDatabase.StartAsync())
+                        throw new Exception();
+                }
+                catch
                 {
                     Console.WriteLine("Failed to connect to the database... Retrying...");
                     await Task.Delay((int)databaseRetryInterval);
@@ -78,8 +83,9 @@ namespace NatManager.Server
 
             Console.WriteLine("Database connection opened");
             
-            SimpleLogger simpleLogger = new SimpleLogger(logsDirectory);
-            Daemon natManagerDaemon = new Daemon(sqlDatabase, simpleLogger, simpleLogger);
+            // SimpleLogger simpleLogger = new SimpleLogger(logsDirectory);
+            ConsoleLogger consoleLogger = new ConsoleLogger();
+            Daemon natManagerDaemon = new Daemon(sqlDatabase, consoleLogger, consoleLogger);
             await natManagerDaemon.AddServiceAsync(new ActionLoggingService(natManagerDaemon));
             await natManagerDaemon.AddServiceAsync(new DaemonManager(natManagerDaemon));
             await natManagerDaemon.AddServiceAsync(new UserManager(natManagerDaemon));
