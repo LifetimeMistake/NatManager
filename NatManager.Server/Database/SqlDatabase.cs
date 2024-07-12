@@ -110,12 +110,12 @@ namespace NatManager.Server.Database
             if (!await reader.ReadAsync())
                 return null;
 
-            Guid guid = Guid.Parse((string)reader["GUID"]);
+            Guid guid = (Guid)reader["GUID"];
             string username = (string)reader["Username"];
             UserPermissions permissions = (UserPermissions)reader["Permissions"];
             bool enabled = (bool)reader["Enabled"];
             DateTime createdDate = (DateTime)reader["CreationDate"];
-            Guid createdBy = Guid.Parse((string)reader["CreatedBy"]);
+            Guid createdBy = (Guid)reader["CreatedBy"];
             return new User(guid, username, permissions, enabled, createdDate, createdBy);
         }
 
@@ -129,12 +129,12 @@ namespace NatManager.Server.Database
             if (!await reader.ReadAsync())
                 return null;
 
-            Guid guid = Guid.Parse((string)reader["GUID"]);
+            Guid guid = (Guid)reader["GUID"];
             string username = (string)reader["Username"];
             UserPermissions permissions = (UserPermissions)reader["Permissions"];
             bool enabled = (bool)reader["Enabled"];
             DateTime createdDate = (DateTime)reader["CreationDate"];
-            Guid createdBy = Guid.Parse((string)reader["CreatedBy"]);
+            Guid createdBy = (Guid)reader["CreatedBy"];
             return new User(guid, username, permissions, enabled, createdDate, createdBy);
         }
 
@@ -146,12 +146,12 @@ namespace NatManager.Server.Database
             List<User> users = new List<User>();
             while(await reader.ReadAsync())
             {
-                Guid guid = Guid.Parse((string)reader["GUID"]);
+                Guid guid = (Guid)reader["GUID"];
                 string username = (string)reader["Username"];
                 UserPermissions permissions = (UserPermissions)reader["Permissions"];
                 bool enabled = (bool)reader["Enabled"];
                 DateTime createdDate = (DateTime)reader["CreationDate"];
-                Guid createdBy = Guid.Parse((string)reader["CreatedBy"]);
+                Guid createdBy = (Guid)reader["CreatedBy"];
                 users.Add(new User(guid, username, permissions, enabled, createdDate, createdBy));
             }
 
@@ -238,8 +238,8 @@ namespace NatManager.Server.Database
             if (!await reader.ReadAsync())
                 return null;
 
-            Guid guid = Guid.Parse((string)reader["GUID"]);
-            Guid ownerGuid = Guid.Parse((string)reader["OwnerGUID"]);
+            Guid guid = (Guid)reader["GUID"];
+            Guid ownerGuid = (Guid)reader["OwnerGUID"];
             Protocol protocol = (Protocol)reader["Protocol"];
             ushort privatePort = (ushort)reader["PrivatePort"];
             ushort publicPort = (ushort)reader["PublicPort"];
@@ -247,7 +247,7 @@ namespace NatManager.Server.Database
             string description = (string)reader["Description"];
             bool enabled = (bool)reader["Enabled"];
             DateTime dateTime = (DateTime)reader["CreatedDate"];
-            Guid createdBy = Guid.Parse((string)reader["CreatedBy"]);
+            Guid createdBy = (Guid)reader["CreatedBy"];
 
             return new ManagedMapping(guid, ownerGuid, protocol, privatePort, publicPort, macAddress, description, enabled, dateTime, createdBy);
         }
@@ -261,8 +261,8 @@ namespace NatManager.Server.Database
 
             while (await reader.ReadAsync())
             {
-                Guid guid = Guid.Parse((string)reader["GUID"]);
-                Guid ownerGuid = Guid.Parse((string)reader["OwnerGUID"]);
+                Guid guid = (Guid)reader["GUID"];
+                Guid ownerGuid = (Guid)reader["OwnerGUID"];
                 Protocol protocol = (Protocol)reader["Protocol"];
                 ushort privatePort = (ushort)reader["PrivatePort"];
                 ushort publicPort = (ushort)reader["PublicPort"];
@@ -270,7 +270,7 @@ namespace NatManager.Server.Database
                 string description = (string)reader["Description"];
                 bool enabled = (bool)reader["Enabled"];
                 DateTime dateTime = (DateTime)reader["CreatedDate"];
-                Guid createdBy = Guid.Parse((string)reader["CreatedBy"]);
+                Guid createdBy = (Guid)reader["CreatedBy"];
                 mappings.Add(new ManagedMapping(guid, ownerGuid, protocol, privatePort, publicPort, macAddress, description, enabled, dateTime, createdBy));
             }
 
@@ -288,8 +288,8 @@ namespace NatManager.Server.Database
 
             while (await reader.ReadAsync())
             {
-                Guid guid = Guid.Parse((string)reader["GUID"]);
-                Guid ownerGuid = Guid.Parse((string)reader["OwnerGUID"]);
+                Guid guid = (Guid)reader["GUID"];
+                Guid ownerGuid = (Guid)reader["OwnerGUID"];
                 Protocol protocol = (Protocol)reader["Protocol"];
                 ushort privatePort = (ushort)reader["PrivatePort"];
                 ushort publicPort = (ushort)reader["PublicPort"];
@@ -297,7 +297,7 @@ namespace NatManager.Server.Database
                 string description = (string)reader["Description"];
                 bool enabled = (bool)reader["Enabled"];
                 DateTime dateTime = (DateTime)reader["CreatedDate"];
-                Guid createdBy = Guid.Parse((string)reader["CreatedBy"]);
+                Guid createdBy = (Guid)reader["CreatedBy"];
                 mappings.Add(new ManagedMapping(guid, ownerGuid, protocol, privatePort, publicPort, macAddress, description, enabled, dateTime, createdBy));
             }
 
